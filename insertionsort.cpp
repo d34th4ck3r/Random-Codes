@@ -1,12 +1,34 @@
 #include<stdio.h>
 using namespace std;
 #define nl printf("\n")
-void insertionsort(int values[])
+void swap(int &a,int &b)
 {
-	for(int i=0;i<values.size;i++)
+	int c;
+	c=a;
+	a=b;
+	b=c;
+}
+void insertionsort(int values[], int n)
+{
+	int k=0;
+	for(int i=0;i<n;i++)
 	{
-		printf("%d ",values[i]);
+		k=i;
+		int j=i-1;
+		while(j>=0)
+		{
+			if(values[k]<values[j])
+			{
+				swap(values[j],values[k]);
+				k=j;
+			}
+			j--;
+		}
 	}
+/*	for(int i=0;i<n;i++)
+	{
+		printf("p%d ",values[i]);
+	}*/
 }
 
 int main(){
@@ -17,6 +39,11 @@ int main(){
 	{
 		scanf("%d",&values[i]);
 	}
-	insertionsort(values);
+	insertionsort(values,n);
+	for(int i=0;i<n;i++)
+	{
+		printf("%d ",values[i]);
+	}
+	nl;
 	return 0;
 }
