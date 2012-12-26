@@ -10,10 +10,12 @@ LANG: C++
 using namespace std;
 
 int main() {
-	ofstream fout ("test.out");
-	ifstream fin ("test.in");
-	int a, b;
-	fin >> a >> b;
-	fout << a+b << endl;
+//	ofstream fout ("test.out");
+//	ifstream fin ("test.in");
+	int a[2];
+	a[0]=1;
+	a[1]=2;
+	int *b=&a[0];
+	printf("%d\n",*b);
 	return 0;
 }
