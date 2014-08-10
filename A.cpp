@@ -28,37 +28,48 @@ typedef struct BinaryTree{
 	struct BinaryTree *right;
 }BinaryTree;
 
-int DFS(int** conn,int N,int A,int B,int cur,int visited[])
-{
-	if(curr==B)
-		return conn[cur][B];
-	int ans=0;
-	visited[A]=1;
-	for(int i=0;i<N;i++)
-		if(visited[i]!=1)
-			ans+=DFS(conn,N,A,B,i,visited);
-	return DFS(
+using namespace std;
+
+int findFreq(string S, int hash[]){
+	int uni=0;
+	for(int i=0;i<S.length();i++)
+	{
+		if(hash[S[i]-'a']==0)
+			uni+=1;
+		hash[S[i]-'a']+=1;
+	}
+	return uni;
+}
+int findMax(int hash[]){
+	int max=INT_MIN;
+	int ind=-1;
+	for(int i=0;i<26;i++){
+		if(max<hash[i]){
+			max=hash[i];
+			ind=i;
+		}
+	}
+	return ind;
 }
 
-using namespace std;
+
 int main()
 {
-	int N,Q;
-	scanf("%d %d",&N,&Q);
-	int** conn=(int **)calloc(N,sizeof(int*));
-	for(int i=0;i<=N;i++)
-		conn[i]=(int*)calloc(N,sizeof(int));
-	for(int i=0;i<Q;i++)
+	string S;
+	cin>>S;
+	int Hash[26]={0};
+	int uni=findFreq(S,Hash);
+//	for(int i=0;i<26;i++)
+//	{
+//		printf("%d ",Hash[i]);
+//	}
+//	NL;
+//	printf("%d\n", uni);
+	for(int i=0;i<uni;i++)
 	{
-		string s;
-		int a,b,time;
-		cin>>s>>a>>b>>time;
-//		cout<<s<<a<<b<<endl;
-		if(s.compare("make")==0)
-			conn[a][b]=time;
-		else
-
+		int c=findMax(Hash);
+		printf("%c\n",c+'a');
+		Hash[c]=-1;
 	}
 	return 0;
 }
-
