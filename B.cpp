@@ -28,36 +28,36 @@ typedef struct BinaryTree{
 	struct BinaryTree *right;
 }BinaryTree;
 
-int DFS(int** conn,int N,int A,int B,int cur,int visited[])
-{
-	if(curr==B)
-		return conn[cur][B];
-	int ans=0;
-	visited[A]=1;
-	for(int i=0;i<N;i++)
-		if(visited[i]!=1)
-			ans+=DFS(conn,N,A,B,i,visited);
-	return DFS(
+using namespace std;
+long long int random(int A,int B,int X,int K,int M,int n,int DP[]){
+	if(n==1){
+		DP[n]=X;
+		return X;
+	}
+	long long int ans=((A*random(A,B,X,K,M,n-1,DP))%M+B%M)%M;
+	DP[n]=ans;
+	return ans;
 }
 
-using namespace std;
 int main()
 {
-	int N,Q;
-	scanf("%d %d",&N,&Q);
-	int** conn=(int **)calloc(N,sizeof(int*));
-	for(int i=0;i<=N;i++)
-		conn[i]=(int*)calloc(N,sizeof(int));
-	for(int i=0;i<Q;i++)
+	long long int A,B,X1,K,M;
+//	scanf("%ld %ld %ld %ld %ld",A,B,X1,K,M);
+	cin>>A>>B>>X1>>K>>M;
+	int DP[M+1];
+	for(int i=0;i<M+1;i++)
+		DP[i]=0;
+	random(A,B,X1,K,M,K+4,DP);
+//	for(int i=1;i<M+1;i++)
+//		cout<<DP[i]<<endl;
+//	int r=K%M;
+//	cout<<"asasd "<<r<<endl;
+	for(int i=K;i<=K+4;i++)
 	{
-		string s;
-		int a,b,time;
-		cin>>s>>a>>b>>time;
-//		cout<<s<<a<<b<<endl;
-		if(s.compare("make")==0)
-			conn[a][b]=time;
+		if(i>M)
+			cout<<DP[i-M]<<endl;
 		else
-
+			cout<<DP[i]<<endl;
 	}
 	return 0;
 }
