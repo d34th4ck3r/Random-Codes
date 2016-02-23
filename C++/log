@@ -1,0 +1,362 @@
+==83874== Memcheck, a memory error detector
+==83874== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==83874== Using Valgrind-3.11.0.SVN and LibVEX; rerun with -h for copyright info
+==83874== Command: ./a.out
+==83874== 
+--83874-- Valgrind options:
+--83874--    -v
+--83874--    --leak-check=full
+--83874-- Output from sysctl({CTL_KERN,KERN_VERSION}):
+--83874--   Darwin Kernel Version 14.5.0: Wed Jul 29 02:26:53 PDT 2015; root:xnu-2782.40.9~1/RELEASE_X86_64
+--83874-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3-avx
+--83874-- Page sizes: currently 4096, max supported 4096
+--83874-- Valgrind library directory: /usr/local/lib/valgrind
+--83874-- ./a.out (rx at 0x100000000, rw at 0x100005000)
+--83874--    reading syms   from primary file (2 163)
+--83874--    dSYM= ./a.out.dSYM/Contents/Resources/DWARF/a.out
+--83874--    reading dwarf3 from dsyms file
+--83874-- /usr/lib/dyld (rx at 0x7fff5fc00000, rw at 0x7fff5fc37000)
+--83874--    reading syms   from primary file (6 1221)
+--83874-- Scheduler: using generic scheduler lock implementation.
+--83874-- Reading suppressions file: /usr/local/lib/valgrind/default.supp
+==83874== embedded gdbserver: reading from /var/folders/z3/347_jn996097tyhzl905tm7m0000gn/T//vgdb-pipe-from-vgdb-to-83874-by-gautambajaj-on-???
+==83874== embedded gdbserver: writing to   /var/folders/z3/347_jn996097tyhzl905tm7m0000gn/T//vgdb-pipe-to-vgdb-from-83874-by-gautambajaj-on-???
+==83874== embedded gdbserver: shared mem   /var/folders/z3/347_jn996097tyhzl905tm7m0000gn/T//vgdb-pipe-shared-mem-vgdb-83874-by-gautambajaj-on-???
+==83874== 
+==83874== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==83874== don't want to do, unless you know exactly what you're doing,
+==83874== or are doing some strange experiment):
+==83874==   /usr/local/lib/valgrind/../../bin/vgdb --pid=83874 ...command...
+==83874== 
+==83874== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==83874==   /path/to/gdb ./a.out
+==83874== and then give GDB the following command
+==83874==   target remote | /usr/local/lib/valgrind/../../bin/vgdb --pid=83874
+==83874== --pid is optional if only one valgrind process is running
+==83874== 
+--83874-- REDIR: 0x7fff5fc1e459 (dyld:arc4random) redirected to 0x23806c9de (???)
+--83874-- REDIR: 0x7fff5fc245e0 (dyld:strcmp) redirected to 0x23806c940 (???)
+--83874-- REDIR: 0x7fff5fc1e220 (dyld:strlen) redirected to 0x23806c90f (???)
+--83874-- REDIR: 0x7fff5fc1e180 (dyld:strcpy) redirected to 0x23806c95c (???)
+--83874-- REDIR: 0x7fff5fc21b2e (dyld:strcat) redirected to 0x23806c920 (???)
+--83874-- REDIR: 0x7fff5fc21b6e (dyld:strlcat) redirected to 0x23806c979 (???)
+--83874-- /usr/local/lib/valgrind/vgpreload_core-amd64-darwin.so (rx at 0x100009000, rw at 0x10000a000)
+--83874--    reading syms   from primary file (3 31)
+--83874--    dSYM= /usr/local/lib/valgrind/vgpreload_core-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_core-amd64-darwin.so
+--83874--    reading dwarf3 from dsyms file
+--83874-- /usr/local/lib/valgrind/vgpreload_memcheck-amd64-darwin.so (rx at 0x10000c000, rw at 0x100012000)
+--83874--    reading syms   from primary file (71 341)
+--83874--    dSYM= /usr/local/lib/valgrind/vgpreload_memcheck-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_memcheck-amd64-darwin.so
+--83874--    reading dwarf3 from dsyms file
+--83874-- /usr/lib/libc++.1.dylib (rx at 0x100017000, rw at 0x10006c000)
+--83874--    reading syms   from primary file (1988 1558)
+--83874-- /usr/lib/libSystem.B.dylib (rx at 0x1000c7000, rw at 0x1000c9000)
+--83874--    reading syms   from primary file (31 5)
+--83874-- /usr/lib/libc++abi.dylib (rx at 0x1000ce000, rw at 0x1000fa000)
+--83874--    reading syms   from primary file (331 180)
+--83874-- /usr/lib/system/libcache.dylib (rx at 0x100107000, rw at 0x10010c000)
+--83874--    reading syms   from primary file (30 29)
+--83874-- /usr/lib/system/libcommonCrypto.dylib (rx at 0x100110000, rw at 0x10011c000)
+--83874--    reading syms   from primary file (214 187)
+--83874-- /usr/lib/system/libcompiler_rt.dylib (rx at 0x100129000, rw at 0x100131000)
+--83874--    reading syms   from primary file (454 8)
+--83874-- /usr/lib/system/libcopyfile.dylib (rx at 0x10013c000, rw at 0x100145000)
+--83874--    reading syms   from primary file (13 35)
+--83874-- /usr/lib/system/libcorecrypto.dylib (rx at 0x10014b000, rw at 0x1001c5000)
+--83874--    reading syms   from primary file (421 574)
+--83874-- /usr/lib/system/libdispatch.dylib (rx at 0x1001dc000, rw at 0x100207000)
+--83874--    reading syms   from primary file (208 825)
+--83874-- /usr/lib/system/libdyld.dylib (rx at 0x10022b000, rw at 0x10022f000)
+--83874--    reading syms   from primary file (78 106)
+--83874-- /usr/lib/system/libkeymgr.dylib (rx at 0x100235000, rw at 0x100236000)
+--83874--    reading syms   from primary file (12 3)
+--83874-- /usr/lib/system/libmacho.dylib (rx at 0x100240000, rw at 0x100246000)
+--83874--    reading syms   from primary file (97 1)
+--83874-- /usr/lib/system/libquarantine.dylib (rx at 0x10024b000, rw at 0x10024e000)
+--83874--    reading syms   from primary file (66 6)
+--83874-- /usr/lib/system/libremovefile.dylib (rx at 0x100252000, rw at 0x100254000)
+--83874--    reading syms   from primary file (15 4)
+--83874-- /usr/lib/system/libsystem_asl.dylib (rx at 0x100259000, rw at 0x100270000)
+--83874--    reading syms   from primary file (212 214)
+--83874-- /usr/lib/system/libsystem_blocks.dylib (rx at 0x10027c000, rw at 0x10027e000)
+--83874--    reading syms   from primary file (25 23)
+--83874-- /usr/lib/system/libsystem_c.dylib (rx at 0x100282000, rw at 0x10030f000)
+--83874--    reading syms   from primary file (1305 736)
+--83874-- /usr/lib/system/libsystem_configuration.dylib (rx at 0x100339000, rw at 0x10033c000)
+--83874--    reading syms   from primary file (27 58)
+--83874-- /usr/lib/system/libsystem_coreservices.dylib (rx at 0x100341000, rw at 0x100344000)
+--83874--    reading syms   from primary file (10 25)
+--83874-- /usr/lib/system/libsystem_coretls.dylib (rx at 0x100348000, rw at 0x10035a000)
+--83874--    reading syms   from primary file (97 1456)
+--83874-- /usr/lib/system/libsystem_dnssd.dylib (rx at 0x100369000, rw at 0x100372000)
+--83874--    reading syms   from primary file (68 32)
+--83874-- /usr/lib/system/libsystem_info.dylib (rx at 0x100377000, rw at 0x1003a0000)
+--83874--    reading syms   from primary file (526 524)
+--83874-- /usr/lib/system/libsystem_kernel.dylib (rx at 0x1003b5000, rw at 0x1003d3000)
+--83874--    reading syms   from primary file (1024 83)
+--83874-- /usr/lib/system/libsystem_m.dylib (rx at 0x1003e8000, rw at 0x100419000)
+--83874--    reading syms   from primary file (593 1)
+--83874-- /usr/lib/system/libsystem_malloc.dylib (rx at 0x100424000, rw at 0x100441000)
+--83874--    reading syms   from primary file (102 201)
+--83874-- /usr/lib/system/libsystem_network.dylib (rx at 0x10044a000, rw at 0x100483000)
+--83874--    reading syms   from primary file (232 1639)
+--83874-- /usr/lib/system/libsystem_networkextension.dylib (rx at 0x1004aa000, rw at 0x1004b1000)
+--83874--    reading syms   from primary file (44 211)
+--83874-- /usr/lib/system/libsystem_notify.dylib (rx at 0x1004ba000, rw at 0x1004c4000)
+--83874--    reading syms   from primary file (138 49)
+--83874-- /usr/lib/system/libsystem_platform.dylib (rx at 0x1004cc000, rw at 0x1004d5000)
+--83874--    reading syms   from primary file (142 158)
+--83874-- /usr/lib/system/libsystem_pthread.dylib (rx at 0x1004dd000, rw at 0x1004e7000)
+--83874--    reading syms   from primary file (158 62)
+--83874-- /usr/lib/system/libsystem_sandbox.dylib (rx at 0x1004f2000, rw at 0x1004f5000)
+--83874--    reading syms   from primary file (72 11)
+--83874-- /usr/lib/system/libsystem_secinit.dylib (rx at 0x1004fa000, rw at 0x1004fc000)
+--83874--    reading syms   from primary file (3 6)
+--83874-- /usr/lib/system/libsystem_stats.dylib (rx at 0x100501000, rw at 0x100507000)
+--83874--    reading syms   from primary file (30 48)
+--83874-- /usr/lib/system/libsystem_trace.dylib (rx at 0x10050d000, rw at 0x100514000)
+--83874--    reading syms   from primary file (47 171)
+--83874-- /usr/lib/system/libunwind.dylib (rx at 0x100521000, rw at 0x100527000)
+--83874--    reading syms   from primary file (102 52)
+--83874-- /usr/lib/system/libxpc.dylib (rx at 0x10052d000, rw at 0x100556000)
+--83874--    reading syms   from primary file (487 816)
+--83874-- /usr/lib/libobjc.A.dylib (rx at 0x100572000, rw at 0x10076d000)
+--83874--    reading syms   from primary file (345 814)
+--83874-- /usr/lib/libauto.dylib (rx at 0x100794000, rw at 0x1007db000)
+--83874--    reading syms   from primary file (68 659)
+--83874-- /usr/lib/libDiagnosticMessagesClient.dylib (rx at 0x1007ef000, rw at 0x1007f1000)
+--83874--    reading syms   from primary file (21 14)
+--83874-- REDIR: 0x1004ccb20 (libsystem_platform.dylib:_platform_memchr$VARIANT$Generic) redirected to 0x10000ffc0 (_platform_memchr$VARIANT$Generic)
+--83874-- REDIR: 0x1004ccce0 (libsystem_platform.dylib:_platform_memcmp) redirected to 0x1000105a0 (_platform_memcmp)
+--83874-- REDIR: 0x1004cd000 (libsystem_platform.dylib:_platform_strncmp) redirected to 0x10000fe80 (_platform_strncmp)
+--83874-- REDIR: 0x10042515d (libsystem_malloc.dylib:malloc) redirected to 0x10000d510 (malloc)
+--83874-- REDIR: 0x100428000 (libsystem_malloc.dylib:malloc_default_zone) redirected to 0x10000f4f0 (malloc_default_zone)
+--83874-- REDIR: 0x100426620 (libsystem_malloc.dylib:malloc_zone_malloc) redirected to 0x10000d880 (malloc_zone_malloc)
+--83874-- REDIR: 0x10042801f (libsystem_malloc.dylib:free) redirected to 0x10000dac0 (free)
+--83874-- REDIR: 0x100429b42 (libsystem_malloc.dylib:malloc_zone_calloc) redirected to 0x10000e160 (malloc_zone_calloc)
+--83874-- REDIR: 0x1004cd300 (libsystem_platform.dylib:_platform_memmove$VARIANT$Ivybridge) redirected to 0x100010b80 (_platform_memmove$VARIANT$Ivybridge)
+--83874-- REDIR: 0x100429c01 (libsystem_malloc.dylib:malloc_zone_from_ptr) redirected to 0x10000f540 (malloc_zone_from_ptr)
+--83874-- REDIR: 0x1004ceb00 (libsystem_platform.dylib:_platform_strcmp) redirected to 0x10000ff30 (_platform_strcmp)
+--83874-- REDIR: 0x100282fa0 (libsystem_c.dylib:strlen) redirected to 0x10000fa30 (strlen)
+--83874-- REDIR: 0x10042a515 (libsystem_malloc.dylib:calloc) redirected to 0x10000dea0 (calloc)
+--83874-- REDIR: 0x1004cd160 (libsystem_platform.dylib:_platform_strchr$VARIANT$Generic) redirected to 0x10000f880 (_platform_strchr$VARIANT$Generic)
+--83874-- REDIR: 0x10042a581 (libsystem_malloc.dylib:malloc_zone_realloc) redirected to 0x10000e820 (malloc_zone_realloc)
+--83874-- REDIR: 0x10042b064 (libsystem_malloc.dylib:malloc_zone_memalign) redirected to 0x10000ef00 (malloc_zone_memalign)
+--83874-- REDIR: 0x10042d02e (libsystem_malloc.dylib:malloc_zone_free) redirected to 0x10000dca0 (malloc_zone_free)
+==83874== Invalid read of size 4
+==83874==    at 0x10000087D: Node::print() (removing_duplicates.cpp:55)
+==83874==    by 0x1000006E1: main (removing_duplicates.cpp:91)
+==83874==  Address 0x100807860 is 0 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== Invalid read of size 8
+==83874==    at 0x100000897: Node::print() (removing_duplicates.cpp:56)
+==83874==    by 0x1000006E1: main (removing_duplicates.cpp:91)
+==83874==  Address 0x100807868 is 8 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== Invalid read of size 4
+==83874==    at 0x100003C42: std::__1::__tree_iterator<std::__1::__value_type<int, bool>, std::__1::__tree_node<std::__1::__value_type<int, bool>, void*>*, long> std::__1::__tree<std::__1::__value_type<int, bool>, std::__1::__map_value_compare<int, std::__1::__value_type<int, bool>, std::__1::less<int>, true>, std::__1::allocator<std::__1::__value_type<int, bool> > >::__lower_bound<int>(int const&, std::__1::__tree_node<std::__1::__value_type<int, bool>, void*>*, std::__1::__tree_node<std::__1::__value_type<int, bool>, void*>*) (__tree:2102)
+==83874==    by 0x1000038D5: std::__1::__tree_iterator<std::__1::__value_type<int, bool>, std::__1::__tree_node<std::__1::__value_type<int, bool>, void*>*, long> std::__1::__tree<std::__1::__value_type<int, bool>, std::__1::__map_value_compare<int, std::__1::__value_type<int, bool>, std::__1::less<int>, true>, std::__1::allocator<std::__1::__value_type<int, bool> > >::find<int>(int const&) (__tree:2028)
+==83874==    by 0x1000009AA: Node::remove_duplicates() (removing_duplicates.cpp:66)
+==83874==    by 0x1000006EA: main (removing_duplicates.cpp:92)
+==83874==  Address 0x100807860 is 0 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== Invalid read of size 4
+==83874==    at 0x100003A53: std::__1::__tree_iterator<std::__1::__value_type<int, bool>, std::__1::__tree_node<std::__1::__value_type<int, bool>, void*>*, long> std::__1::__tree<std::__1::__value_type<int, bool>, std::__1::__map_value_compare<int, std::__1::__value_type<int, bool>, std::__1::less<int>, true>, std::__1::allocator<std::__1::__value_type<int, bool> > >::find<int>(int const&) (__functional_base:63)
+==83874==    by 0x1000009AA: Node::remove_duplicates() (removing_duplicates.cpp:66)
+==83874==    by 0x1000006EA: main (removing_duplicates.cpp:92)
+==83874==  Address 0x100807860 is 0 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== Invalid read of size 4
+==83874==    at 0x100001A80: std::__1::map<int, bool, std::__1::less<int>, std::__1::allocator<std::__1::pair<int const, bool> > >::__find_equal_key(std::__1::__tree_node_base<void*>*&, int const&) (__functional_base:63)
+==83874==    by 0x100000C4F: std::__1::map<int, bool, std::__1::less<int>, std::__1::allocator<std::__1::pair<int const, bool> > >::operator[](int const&) (map:1361)
+==83874==    by 0x100000B5D: Node::remove_duplicates() (removing_duplicates.cpp:67)
+==83874==    by 0x1000006EA: main (removing_duplicates.cpp:92)
+==83874==  Address 0x100807860 is 0 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== Invalid read of size 4
+==83874==    at 0x1000020A2: std::__1::map<int, bool, std::__1::less<int>, std::__1::allocator<std::__1::pair<int const, bool> > >::__construct_node_with_key(int const&) (memory:1462)
+==83874==    by 0x100000CF6: std::__1::map<int, bool, std::__1::less<int>, std::__1::allocator<std::__1::pair<int const, bool> > >::operator[](int const&) (map:1365)
+==83874==    by 0x100000B5D: Node::remove_duplicates() (removing_duplicates.cpp:67)
+==83874==    by 0x1000006EA: main (removing_duplicates.cpp:92)
+==83874==  Address 0x100807860 is 0 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== Invalid read of size 8
+==83874==    at 0x100000BC4: Node::remove_duplicates() (removing_duplicates.cpp:72)
+==83874==    by 0x1000006EA: main (removing_duplicates.cpp:92)
+==83874==  Address 0x100807868 is 8 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== Invalid read of size 4
+==83874==    at 0x10000087D: Node::print() (removing_duplicates.cpp:55)
+==83874==    by 0x1000006F3: main (removing_duplicates.cpp:93)
+==83874==  Address 0x100807860 is 0 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== Invalid read of size 8
+==83874==    at 0x100000897: Node::print() (removing_duplicates.cpp:56)
+==83874==    by 0x1000006F3: main (removing_duplicates.cpp:93)
+==83874==  Address 0x100807868 is 8 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== 
+==83874== HEAP SUMMARY:
+==83874==     in use at exit: 38,999 bytes in 430 blocks
+==83874==   total heap usage: 524 allocs, 94 frees, 45,655 bytes allocated
+==83874== 
+==83874== Searching for pointers to 430 not-freed blocks
+==83874== Checked 9,061,224 bytes
+==83874== 
+==83874== 32 (16 direct, 16 indirect) bytes in 1 blocks are definitely lost in loss record 29 of 83
+==83874==    at 0x10000D591: malloc (vg_replace_malloc.c:303)
+==83874==    by 0x10005443D: operator new(unsigned long) (in /usr/lib/libc++.1.dylib)
+==83874==    by 0x10000078A: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:44)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== 96 (16 direct, 80 indirect) bytes in 1 blocks are definitely lost in loss record 49 of 83
+==83874==    at 0x10000D591: malloc (vg_replace_malloc.c:303)
+==83874==    by 0x10005443D: operator new(unsigned long) (in /usr/lib/libc++.1.dylib)
+==83874==    by 0x10000073A: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:41)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== LEAK SUMMARY:
+==83874==    definitely lost: 32 bytes in 2 blocks
+==83874==    indirectly lost: 96 bytes in 6 blocks
+==83874==      possibly lost: 0 bytes in 0 blocks
+==83874==    still reachable: 4,096 bytes in 1 blocks
+==83874==         suppressed: 34,775 bytes in 421 blocks
+==83874== Reachable blocks (those to which a pointer was found) are not shown.
+==83874== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==83874== 
+==83874== ERROR SUMMARY: 15 errors from 11 contexts (suppressed: 18 from 18)
+==83874== 
+==83874== 1 errors in context 1 of 11:
+==83874== Invalid read of size 8
+==83874==    at 0x100000897: Node::print() (removing_duplicates.cpp:56)
+==83874==    by 0x1000006F3: main (removing_duplicates.cpp:93)
+==83874==  Address 0x100807868 is 8 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== 
+==83874== 1 errors in context 2 of 11:
+==83874== Invalid read of size 4
+==83874==    at 0x10000087D: Node::print() (removing_duplicates.cpp:55)
+==83874==    by 0x1000006F3: main (removing_duplicates.cpp:93)
+==83874==  Address 0x100807860 is 0 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== 
+==83874== 1 errors in context 3 of 11:
+==83874== Invalid read of size 8
+==83874==    at 0x100000BC4: Node::remove_duplicates() (removing_duplicates.cpp:72)
+==83874==    by 0x1000006EA: main (removing_duplicates.cpp:92)
+==83874==  Address 0x100807868 is 8 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== 
+==83874== 1 errors in context 4 of 11:
+==83874== Invalid read of size 4
+==83874==    at 0x1000020A2: std::__1::map<int, bool, std::__1::less<int>, std::__1::allocator<std::__1::pair<int const, bool> > >::__construct_node_with_key(int const&) (memory:1462)
+==83874==    by 0x100000CF6: std::__1::map<int, bool, std::__1::less<int>, std::__1::allocator<std::__1::pair<int const, bool> > >::operator[](int const&) (map:1365)
+==83874==    by 0x100000B5D: Node::remove_duplicates() (removing_duplicates.cpp:67)
+==83874==    by 0x1000006EA: main (removing_duplicates.cpp:92)
+==83874==  Address 0x100807860 is 0 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== 
+==83874== 1 errors in context 5 of 11:
+==83874== Invalid read of size 4
+==83874==    at 0x100003A53: std::__1::__tree_iterator<std::__1::__value_type<int, bool>, std::__1::__tree_node<std::__1::__value_type<int, bool>, void*>*, long> std::__1::__tree<std::__1::__value_type<int, bool>, std::__1::__map_value_compare<int, std::__1::__value_type<int, bool>, std::__1::less<int>, true>, std::__1::allocator<std::__1::__value_type<int, bool> > >::find<int>(int const&) (__functional_base:63)
+==83874==    by 0x1000009AA: Node::remove_duplicates() (removing_duplicates.cpp:66)
+==83874==    by 0x1000006EA: main (removing_duplicates.cpp:92)
+==83874==  Address 0x100807860 is 0 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== 
+==83874== 1 errors in context 6 of 11:
+==83874== Invalid read of size 8
+==83874==    at 0x100000897: Node::print() (removing_duplicates.cpp:56)
+==83874==    by 0x1000006E1: main (removing_duplicates.cpp:91)
+==83874==  Address 0x100807868 is 8 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== 
+==83874== 1 errors in context 7 of 11:
+==83874== Invalid read of size 4
+==83874==    at 0x10000087D: Node::print() (removing_duplicates.cpp:55)
+==83874==    by 0x1000006E1: main (removing_duplicates.cpp:91)
+==83874==  Address 0x100807860 is 0 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== 
+==83874== 3 errors in context 8 of 11:
+==83874== Invalid read of size 4
+==83874==    at 0x100001A80: std::__1::map<int, bool, std::__1::less<int>, std::__1::allocator<std::__1::pair<int const, bool> > >::__find_equal_key(std::__1::__tree_node_base<void*>*&, int const&) (__functional_base:63)
+==83874==    by 0x100000C4F: std::__1::map<int, bool, std::__1::less<int>, std::__1::allocator<std::__1::pair<int const, bool> > >::operator[](int const&) (map:1361)
+==83874==    by 0x100000B5D: Node::remove_duplicates() (removing_duplicates.cpp:67)
+==83874==    by 0x1000006EA: main (removing_duplicates.cpp:92)
+==83874==  Address 0x100807860 is 0 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+==83874== 
+==83874== 3 errors in context 9 of 11:
+==83874== Invalid read of size 4
+==83874==    at 0x100003C42: std::__1::__tree_iterator<std::__1::__value_type<int, bool>, std::__1::__tree_node<std::__1::__value_type<int, bool>, void*>*, long> std::__1::__tree<std::__1::__value_type<int, bool>, std::__1::__map_value_compare<int, std::__1::__value_type<int, bool>, std::__1::less<int>, true>, std::__1::allocator<std::__1::__value_type<int, bool> > >::__lower_bound<int>(int const&, std::__1::__tree_node<std::__1::__value_type<int, bool>, void*>*, std::__1::__tree_node<std::__1::__value_type<int, bool>, void*>*) (__tree:2102)
+==83874==    by 0x1000038D5: std::__1::__tree_iterator<std::__1::__value_type<int, bool>, std::__1::__tree_node<std::__1::__value_type<int, bool>, void*>*, long> std::__1::__tree<std::__1::__value_type<int, bool>, std::__1::__map_value_compare<int, std::__1::__value_type<int, bool>, std::__1::less<int>, true>, std::__1::allocator<std::__1::__value_type<int, bool> > >::find<int>(int const&) (__tree:2028)
+==83874==    by 0x1000009AA: Node::remove_duplicates() (removing_duplicates.cpp:66)
+==83874==    by 0x1000006EA: main (removing_duplicates.cpp:92)
+==83874==  Address 0x100807860 is 0 bytes inside a block of size 16 free'd
+==83874==    at 0x10000DB3D: free (vg_replace_malloc.c:480)
+==83874==    by 0x10000082E: Node::convertArrayToLinkedList(int*, int) (removing_duplicates.cpp:48)
+==83874==    by 0x1000006D4: main (removing_duplicates.cpp:90)
+==83874== 
+--83874-- 
+--83874-- used_suppression:      1 OSX1010:13-Leak /usr/local/lib/valgrind/default.supp:867 suppressed: 4,096 bytes in 1 blocks
+--83874-- used_suppression:      2 OSX1010:1-Leak /usr/local/lib/valgrind/default.supp:747 suppressed: 5,936 bytes in 45 blocks
+--83874-- used_suppression:     37 OSX1010:6-Leak /usr/local/lib/valgrind/default.supp:798 suppressed: 14,936 bytes in 261 blocks
+--83874-- used_suppression:     15 OSX1010:7-Leak /usr/local/lib/valgrind/default.supp:809 suppressed: 7,170 bytes in 72 blocks
+--83874-- used_suppression:     16 OSX1010:10-Leak /usr/local/lib/valgrind/default.supp:840 suppressed: 2,381 bytes in 34 blocks
+--83874-- used_suppression:      1 OSX1010:9-Leak /usr/local/lib/valgrind/default.supp:830 suppressed: 64 bytes in 1 blocks
+--83874-- used_suppression:      6 OSX1010:5-Leak /usr/local/lib/valgrind/default.supp:788 suppressed: 176 bytes in 6 blocks
+--83874-- used_suppression:      1 OSX1010:3-Leak /usr/local/lib/valgrind/default.supp:765 suppressed: 16 bytes in 1 blocks
+==83874== 
+==83874== ERROR SUMMARY: 15 errors from 11 contexts (suppressed: 18 from 18)

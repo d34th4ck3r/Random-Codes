@@ -25,7 +25,7 @@ class Node{
       int value;
       Node *next;
       Node(){} //handling implicit Copy Constructor
-      Node(int val): value(val){}
+      Node(int val): value(val),next(NULL){}
       Node(int val,Node *next): value(val),next(next){}
 
       void addToList(Node *node){
@@ -37,24 +37,43 @@ class Node{
          return;
       }
 
-      static Node convertArrayToLinkedList(int *array,int N){
-         Node start(array[0]);
-         Node temp = start;
-         for(int i=1;i<N;i++){
-            Node node(array[i]);
-            temp.next = &node;
-            temp = *temp.next;
-         }
-         return start;
+      static Node* convertArrayToLinkedList(int *array,int N){
+	      Node *start = new Node(array[0]);
+	      Node *end = start;
+	      for(int i=1;i<N;i++){                                                
+		      Node *node = new Node(array[i]);              
+		      end->next = node;              
+		      end = end->next;
+	      }
+	      return start;  
       }
 
       void print(){
-         Node *current = this;
-         while(current!=NULL){
-            cout << current->value <<" ";
-            current = current->next;
-         }
-         cout << endl;
+	      Node *current = this;
+	      while(current!=NULL){
+		      cout << current->value <<" ";
+		      current = current->next;
+	      }
+	      cout << endl;
+      }
+
+      void remove_duplicates(){
+	      map<int,bool> Hash;
+	      Node *prev = this;
+	      Hash[prev->value] = true;
+	      Node *curr = this->next;
+	      while(curr!=NULL){
+		      if(Hash.find(curr->value) == Hash.end()){
+			      Hash[curr->value] = true;
+			      prev = curr;
+			      curr = curr->next;
+		      }else{
+			      prev->next = curr->next;
+			      Node *temp = curr;
+			      curr = curr->next;
+			      delete temp;
+		      }
+	      }
       }
 };
 
@@ -70,9 +89,11 @@ class BinaryTree{
 
 int main()
 {
-   int array[] = {2,3,4,5,2,3,2,23,1};
-   Node list = Node::convertArrayToLinkedList(array,9);
-   list.print();
+   int array[] = {2,3,4,5,2,2,2,2,3,2,12,2,12,3,3,2,23,1};
+   Node* list = Node::convertArrayToLinkedList(array,sizeof(array)/sizeof(array[0]));
+   list->print();
+   list->remove_duplicates();
+   list->print();
    return 0;
 }
 
