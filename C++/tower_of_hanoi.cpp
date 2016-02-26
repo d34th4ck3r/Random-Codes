@@ -170,29 +170,29 @@ class Stack{
 class Queue{
   Node *start,*end;
   public:
-    Queue():start(NULL),end(NULL){}
+  Queue():start(NULL),end(NULL){}
 
-    void enqueue(int val){
-      if(end != NULL){
-        Node *new_node = new Node(val);
-        end->next = new_node;
-        end = end->next;
-      }else{
-        start = new Node(val);
-        end = start;
-      }
+  void enqueue(int val){
+    if(end != NULL){
+      Node *new_node = new Node(val);
+      end->next = new_node;
+      end = end->next;
+    }else{
+      start = new Node(val);
+      end = start;
     }
+  }
 
-    int dequeue(){
-      if(start !=NULL){
-        int val = start->value;
-        Node *temp = start;
-        start = start->next;
-        delete temp;
-        return val;
-      }
-      return -1;
+  int dequeue(){
+    if(start !=NULL){
+      int val = start->value;
+      Node *temp = start;
+      start = start->next;
+      delete temp;
+      return val;
     }
+    return -1;
+  }
 };
 
 class BinaryTree{
@@ -205,16 +205,30 @@ class BinaryTree{
     BinaryTree(int val, BinaryTree *left, BinaryTree *right): value(val),left(left), right(right){}
 };
 
-int main()
-{
-   int array1[] = {3,3,3,3,3,3,3};
-   Node* list1 = Node::convertArrayToLinkedList(array1,sizeof(array1)/sizeof(array1[0]));
-   list1->print();
-   int array2[] = {4,2,3};
-   Node* list2 = Node::convertArrayToLinkedList(array2,sizeof(array2)/sizeof(array2[0]));
-   list2->print();
-   Node new_list = *list1 + *list2;
-   new_list.print();
-   return 0;
+void TowerOfHanoi(Stack *start,Stack *buffer, Stack *dest,int size){
+  if(size==0) return ;
+
+  TowerOfHanoi(start,dest,buffer,size-1);
+
+  int top = start->pop();
+  dest->push(top);
+
+  TowerOfHanoi(buffer,start,dest,size-1);
 }
 
+int main()
+{
+  Stack *T1 = new Stack();
+  Stack *T2 = new Stack();
+  Stack *T3 = new Stack();
+  T1->push(4);
+  T1->push(3);
+  T1->push(2);
+  T1->push(1);
+  TowerOfHanoi(T1,T2,T3,4);
+  cout << T3->pop() << endl;
+  cout << T3->pop() << endl;
+  cout << T3->pop() << endl;
+  cout << T3->pop() << endl;
+  return 0;
+}
