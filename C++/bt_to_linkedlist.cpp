@@ -28,11 +28,12 @@ class Node{
     Node(int val): value(val),next(NULL){}
     Node(int val,Node *next): value(val),next(next){}
 
-    void addToList(Node *node){
+    void addToList(int val){
       Node *pointer = this;
       while(pointer->next != NULL){
         pointer = pointer->next;
       }
+      Node *node = new Node(val);
       pointer->next = node;
       return;
     }
@@ -196,6 +197,19 @@ class Queue{
 };
 
 class BinaryTree{
+
+  void addToLinkedLists(BinaryTree* bt,vector<Node*> *LinkedLists,int level){
+    if(LinkedLists->size() < level+1){
+      LinkedLists->push_back(new Node(bt->value));
+    }else{
+      (*LinkedLists)[level]->addToList(bt->value);
+    }
+    if(bt->left != NULL)
+      addToLinkedLists(bt->left,LinkedLists,level+1);
+    if(bt->right != NULL)
+      addToLinkedLists(bt->right,LinkedLists,level+1);
+  }
+
   public:
     int value;
     BinaryTree *left;
@@ -257,6 +271,7 @@ class BinaryTree{
       }
       if(N==2){
         BT->left = new BinaryTree(array[0]);
+        BT->right = NULL;
         return BT;
       }
       BT->left = convertArrayToBinaryTree(&array[0],mid);
@@ -287,18 +302,33 @@ class BinaryTree{
         right->print_postorder();
       cout << value << " ";
     }
+
+    int height(){
+      int right_height = INT_MIN, left_height = INT_MIN;
+      if(left == NULL && right == NULL)
+        return 1;
+      else if(left != NULL)
+         left_height = left->height();
+      else if(right != NULL)
+        right_height = right->height();
+      return 1 + max(left_height,right_height);
+    }
+
+    vector<Node*> convertToLinkedList(){
+      vector<Node*> LinkedLists;
+      addToLinkedLists(this,&LinkedLists,0);
+      return LinkedLists;
+    }
 };
 
 int main()
 {
-  int array[] ={7,8,9,10,14,15,17};
+  int array[] ={7,8,9,10,14,15,16};
   BinaryTree *bt = BinaryTree::convertArrayToBinaryTree(array,sizeof(array)/sizeof(array[0]));
-  bt->print_inorder();
-  NL;
   bt->print_preorder();
   NL;
-  bt->print_postorder();
-  NL;
+  vector<Node*> LinkedLists = bt->convertToLinkedList();
+  LinkedLists[2]->print();
   return 0;
 }
 

@@ -48,21 +48,16 @@ class BinaryTree{
       BinaryTree(int val, BinaryTree *left, BinaryTree *right): value(val),left(left), right(right){}
 };
 
+void test_fun(vector<int> a){
+  a.push_back(2);
+  cout << a[0]  << endl;
+}
+
 int main()
 {
-  int *count = new int;
-  int N;
-  int i=0;
-  while(1){
-    cin >> N;
-    if(N == -1)
-      break;
-    count[i]= N;
-    i++;
-  }
-  if(i>10)
-    cout << count[10] << endl;
-  delete count;
+  vector<int> a;
+  test_fun(a);
+  cout << a.size() << endl;
   return 0;
 }
 
